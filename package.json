@@ -1,0 +1,30 @@
+{
+  "name": "mongoose-connector",
+  "version": "0.0.1",
+  "description": "Connect and disconnect to a mongodb via mongoose.",
+  "main": "generated/mongoose-connector.js",
+  "keywords": [],
+  "private": false,
+  "scripts": {
+    "postinstall": "typings install",
+    "reinstall": "rm -fr node_modules && npm install",
+    "clean": "rm -fr generated",
+    "build": "tsc -p ."
+  },
+  "author": {
+    "name": "Peter Snider",
+    "email": "snider.peter@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^4.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:psnider/mongoose-connector.git"
+  },
+  "typings": "./mongoose-connector.d.ts"
+}

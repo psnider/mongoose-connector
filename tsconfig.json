@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": false,
+        "noLib": false,
+        "outDir": "generated"
+    },
+    "scripts": {
+        "postbuild": "echo after building"
+    },
+    "formatCodeOptions": {
+        "indentSize": 4,
+        "tabSize": 4,
+        "newLineCharacter": "\n",
+        "convertTabsToSpaces": true,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    },
+    "filesGlob": [
+        "src/ts/*.ts",
+        "typings/index.d.ts",
+        "mongoose-connector.d.ts"
+    ],
+    "files": [
+        "src/ts/mongoose-connector.ts",
+        "typings/index.d.ts",
+        "mongoose-connector.d.ts"
+    ],
+    "exclude": [],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
