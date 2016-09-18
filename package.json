@@ -1,7 +1,7 @@
 {
   "name": "mongoose-connector",
   "version": "0.0.1",
-  "description": "Connect and disconnect to a mongodb via mongoose.",
+  "description": "Connect and disconnect to a mongodb instance via mongoose.",
   "main": "generated/mongoose-connector.js",
   "keywords": [],
   "private": false,

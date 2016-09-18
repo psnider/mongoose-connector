@@ -1,3 +1,3 @@
 # mongoose-connector
 
-Connect and disconnect to a mongodb via mongoose.
+Connect and disconnect to a mongodb instance via mongoose.
