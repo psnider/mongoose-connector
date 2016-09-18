@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 // var mongo_path = process.env.MONGOLAB_URI ||
 //     process.env.MONGOHQ_URL ||
 //     configure.get('MONGO_PATH')
-function connectViaMongoose(mongo_path, onError, done) {
+function connect(mongo_path, onError, done) {
     var done_called = false;
     function guardedDone(error) {
         if (!done_called) {
@@ -35,11 +35,11 @@ function connectViaMongoose(mongo_path, onError, done) {
         guardedDone();
     }
 }
-exports.connectViaMongoose = connectViaMongoose;
-function disconnectViaMongoose(done) {
+exports.connect = connect;
+function disconnect(done) {
     mongoose.connection.close(function () {
         // console.log('Mongoose disconnected')
         done();
     });
 }
-exports.disconnectViaMongoose = disconnectViaMongoose;
+exports.disconnect = disconnect;
