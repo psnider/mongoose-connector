@@ -20,7 +20,8 @@
     "mongoose": "^4.6.0"
   },
   "devDependencies": {
-    "typescript": "^2.0.2"
+    "typescript": "^2.0.2",
+    "typings": "^1.4.0"
   },
   "repository": {
     "type": "git",
