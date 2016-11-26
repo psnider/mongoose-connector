@@ -1,7 +1,7 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.10",
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "declaration": false,
         "noImplicitAny": false,
@@ -26,14 +26,8 @@
         "placeOpenBraceOnNewLineForFunctions": false,
         "placeOpenBraceOnNewLineForControlBlocks": false
     },
-    "filesGlob": [
-        "src/ts/*.ts",
-        "typings/index.d.ts",
-        "mongoose-connector.d.ts"
-    ],
     "files": [
-        "src/ts/mongoose-connector.ts",
-        "typings/index.d.ts",
+        "mongoose-connector.ts",
         "mongoose-connector.d.ts"
     ],
     "exclude": [],

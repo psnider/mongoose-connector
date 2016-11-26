@@ -1,14 +1,12 @@
 {
-  "name": "mongoose-connector",
-  "version": "0.0.1",
-  "description": "Connect and disconnect to a mongodb instance via mongoose.",
-  "main": "generated/mongoose-connector.js",
+  "name": "@sabbatical/mongoose-connector",
+  "version": "0.1.0",
+  "description": "Connect to and disconnect from a mongodb instance via mongoose.",
+  "main": "./mongoose-connector.js",
   "keywords": [],
   "private": false,
   "scripts": {
-    "postinstall": "typings install",
-    "reinstall": "rm -fr node_modules && npm install",
-    "clean": "rm -fr generated",
+    "clean": "rm -f mongoose-connector.js mongoose-connector.map",
     "build": "tsc -p ."
   },
   "author": {
@@ -20,8 +18,10 @@
     "mongoose": "4.6.5"
   },
   "devDependencies": {
-    "typescript": "2.0.6",
-    "typings": "1.5.0"
+    "@types/mongodb": "2.1.35",
+    "@types/mongoose": "4.6.1",
+    "@types/node": "6.0.51",
+    "typescript": "2.0.10"
   },
   "repository": {
     "type": "git",

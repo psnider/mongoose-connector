@@ -1,5 +1,5 @@
 "use strict";
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 // Use native promises
 mongoose.Promise = global.Promise;
 // to set mongo_path, use something like:
