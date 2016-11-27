@@ -7,7 +7,8 @@
         "noImplicitAny": false,
         "removeComments": false,
         "noLib": false,
-        "outDir": "generated"
+        "outDir": ".",
+        "types": ["mongodb", "mongoose" ,"node"]
     },
     "scripts": {
         "postbuild": "echo after building"
@@ -30,8 +31,5 @@
         "mongoose-connector.ts",
         "mongoose-connector.d.ts"
     ],
-    "exclude": [],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    "exclude": []
 }

@@ -1,7 +1,0 @@
-{
-  "globalDependencies": {
-    "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
-    "mongoose": "registry:dt/mongoose#4.5.9+20160826204928",
-    "node": "registry:dt/node#6.0.0+20160914131736"
-  }
-}
