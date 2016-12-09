@@ -1,6 +1,6 @@
 {
   "name": "@sabbatical/mongoose-connector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Connect to and disconnect from a mongodb instance via mongoose.",
   "main": "./mongoose-connector.js",
   "keywords": [],

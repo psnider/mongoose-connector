@@ -30,7 +30,8 @@ function connect(mongo_path, onError, done) {
     mongoose.connection.on('disconnected', function () {
         // console.log('Mongoose default connection disconnected')
     });
-    if (mongoose.connection.db['state'] == 'connected') {
+    // TODO: correct mongoose.d.ts
+    if (mongoose.connection.db['state'] === 'connected') {
         // TODO: state may not be supported in mongo 3.2
         guardedDone();
     }
