@@ -20,7 +20,7 @@ export function connect(mongo_path: string, onError : (error : Error) => void, d
       server: { socketOptions: { keepAlive: 1 } }
     }
     mongoose.connect(mongo_path, options)
-    // TODO: do we need to handle 'open' event?
+    // TODO: [handle the open event](https://github.com/psnider/mongoose-connector/issues/2)
     mongoose.connection.on('connected', function () {
         // console.log('mongoose connected, mongoose.connection.db.state=' + mongoose.connection.db.state)
         guardedDone()
@@ -32,9 +32,8 @@ export function connect(mongo_path: string, onError : (error : Error) => void, d
     mongoose.connection.on('disconnected', function () {
         // console.log('Mongoose default connection disconnected')
     })
-    // TODO: correct mongoose.d.ts
+    // TODO: [update mongoose.d.ts with mongoose.connection.db.state](https://github.com/psnider/mongoose-connector/issues/3)
     if ((<any>mongoose.connection.db)['state'] === 'connected') {
-        // TODO: state may not be supported in mongo 3.2
         guardedDone()
     }
 }
