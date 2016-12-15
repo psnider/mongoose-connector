@@ -6,8 +6,10 @@
   "keywords": [],
   "private": false,
   "scripts": {
-    "clean": "rm -f mongoose-connector.js mongoose-connector.map",
-    "build": "tsc -p ."
+    "build": "bin/build-and-install-in-node_modules.sh",
+    "clean": "rm -fr *.js *.map node_modules/@sabbatical/mongoose-connector",
+    "test-only": "DISABLE_LOGGING=true mocha -R spec mongoose-connector.tests.js",
+    "test": "npm run clean && npm run build && npm run test-only"
   },
   "author": {
     "name": "Peter Snider",
@@ -15,12 +17,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mongoose": "4.6.5"
+    "mongoose": "^4.6.5",
+    "pino": "3.0.5"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.33",
     "@types/mongodb": "2.1.35",
-    "@types/mongoose": "4.6.1",
+    "@types/mongoose": "^4.6.1",
     "@types/node": "6.0.51",
+    "@types/pino": "3.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "typescript": "2.0.10"
   },
   "repository": {
