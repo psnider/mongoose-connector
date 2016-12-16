@@ -37,7 +37,6 @@ export class Connection {
     }
 
     addClient(client: Client) {
-        console.log(`addClient client=${JSON.stringify(client)}`)
         let i = this.getIndexOfClient(client.client_name)
         if (i != -1) {
             this.clients[i] = client
@@ -62,7 +61,6 @@ export class Connection {
             client.callbacks.connectDone(new Error('cant connect while still disconnecting'))
         } else if (this.state === 'disconnected') {
             this.state = 'connecting'
-console.log(`Connection.connect this.state=${this.state}`)
             var options = {
                 server: { socketOptions: { keepAlive: 1 } }
             }
@@ -72,7 +70,6 @@ console.log(`Connection.connect this.state=${this.state}`)
             // TODO: [handle the open event](https://github.com/psnider/mongoose-connector/issues/2)
             mongoose.connection.on('connected', () => {
                 this.state = 'connected'
-console.log(`Connection.connect this.state=${this.state}`)
                 this.log.info({module: MODULE_NAME, fname, mongo_path: this.mongo_path, state: 'connected'})
                 guardedDone()
             })
@@ -80,15 +77,13 @@ console.log(`Connection.connect this.state=${this.state}`)
                 this.log.info({module: MODULE_NAME, fname, mongo_path: this.mongo_path, 'mongoose.connection.db.state': (<any>mongoose.connection.db).state})
                 this.onError(error)
             })
-            mongoose.connection.on('disconnected', function () {
+            mongoose.connection.on('disconnected', () => {
                 this.state = 'disconnected'
-console.log(`Connection.connect this.state=${this.state}`)
                 this.log.info({module: MODULE_NAME, fname, mongo_path: this.mongo_path, state: 'disconnected'})
             })
             // TODO: [update mongoose.d.ts with mongoose.connection.db.state](https://github.com/psnider/mongoose-connector/issues/3)
             if ((<any>mongoose.connection.db)['state'] === 'connected') {
                 this.state = 'connected'
-console.log(`Connection.connect this.state=${this.state}`)
                 guardedDone()
             }
         }
@@ -98,12 +93,9 @@ console.log(`Connection.connect this.state=${this.state}`)
     disconnect(done : (error? : Error) => void): void {
         let fname = 'disconnect'
         this.state = 'disconnecting'
-console.log(`Connection.disconnect this.state=${this.state}`)
         mongoose.connection.close(() => {
             this.state = 'disconnected'
-console.log(`===Connection.disconnect this.state=${this.state}`)
             this.log.info({module: MODULE_NAME, fname, mongo_path: this.mongo_path, state: 'disconnected'})
-console.log(`----`)
             done()
         })        
     }
@@ -159,7 +151,6 @@ export class SharedConnections {
         let done_count = 0
         let done_called = false
         let guardedDone = (error? : Error) => {
-            console.log('guardedDone')
             ++done_count
             if (!done_called && (error || (done_count === count))) {
                 done_called = true

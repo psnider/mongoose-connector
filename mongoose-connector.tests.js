@@ -4,7 +4,8 @@ var expect = chai.expect;
 const mongoose = require('mongoose');
 const pino = require('pino');
 const mongoose_connector_1 = require('@sabbatical/mongoose-connector');
-var log = pino();
+var enable_logging = (process.env.DISABLE_LOGGING == null) || ((process.env.DISABLE_LOGGING.toLowerCase() !== 'true') && (process.env.DISABLE_LOGGING !== '1'));
+var log = pino({ name: 'tests', enabled: enable_logging });
 var MockMongooseDefaultConnection;
 (function (MockMongooseDefaultConnection) {
     var actions = [];
@@ -29,18 +30,15 @@ var MockMongooseDefaultConnection;
         let action = actions.shift();
         if (action) {
             if (action.event && connection.handlers[action.event]) {
-                console.log(`mock takeAction call ${action.event}`);
                 connection.handlers[action.event](action.error);
             }
             if (action.call_done && done) {
-                console.log(`mock takeAction call done`);
                 done(action.error);
             }
         }
     }
     function connect(target_mongo_path, options) {
         ++MockMongooseDefaultConnection.connect_called;
-        console.log(`mock.connect called ${MockMongooseDefaultConnection.connect_called} times`);
         if (!mongo_path) {
             mongo_path = target_mongo_path;
         }
@@ -50,19 +48,15 @@ var MockMongooseDefaultConnection;
             }
         }
         connection.db.state = 'connected';
-        console.log(`mock.connect connection.db.state=${connection.db.state}`);
         takeAction();
-        console.log(`mock.connect done`);
     }
     function disconnect(done) {
         if (connection.db.state !== 'disconnected') {
             ++MockMongooseDefaultConnection.disconnect_called;
-            console.log(`mock.disconnect called ${MockMongooseDefaultConnection.disconnect_called} times`);
             if (!mongo_path) {
                 throw new Error('disconnect mongo_path isnt set');
             }
             connection.db.state = 'disconnected';
-            console.log(`mock.disconnect connection.db.state=${connection.db.state}`);
             takeAction(done);
             mongo_path = undefined;
         }
@@ -74,7 +68,6 @@ var MockMongooseDefaultConnection;
         is_mock: true,
         handlers: {},
         on: (event, handler) => {
-            console.log(`set mock.connection.on(${event}, handler)`);
             connection.handlers[event] = handler;
         },
         close: disconnect,
@@ -118,7 +111,6 @@ describe('SharedConnections', function () {
                             onError: (error) => {
                                 done(error);
                             }, connectDone: (error) => {
-                                console.log(`connectDone called`);
                                 // expect no change
                                 expect(MockMongooseDefaultConnection.connect_called).to.equal(1);
                                 done();
